@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Authentiation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'account/css/account.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="{% static 'account/js/account.js' %}"></script>
+    {% block title %}{% endblock title %}
+
+</head>
+
+<body>
+    {% block content %}
+    {% endblock content %}
+
+    {% if messages %}
+    <section id="message">
+        {% for msg in messages %}
+        <span class="messages error">
+            <p>{{msg}}</p>
+            <i class="close {{ msg.tags }}"></i>
+        </span>
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+
+</html>

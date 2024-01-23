@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    background: #141e30;
+    justify-content: center;
+}
+
+body::before {
+    left: 35%;
+    z-index: 0;
+    content: '';
+    bottom: 10%;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20%;
+    position: absolute;
+    box-shadow: -20rem 10rem 0 2em rgb(124, 164, 4), inset 5em 0 0 2em rgb(73, 96, 4);
+}
+
+section#message {
+    top: 0;
+    left: 0;
+    right: 0;
+    gap: 1em;
+    bottom: 0;
+    z-index: 100;
+    padding: 1em;
+    display: flex;
+    position: fixed;
+    pointer-events: none;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+section#message .messages {
+    gap: 1em;
+    opacity: 0;
+    width: 20em;
+    display: flex;
+    padding: .7rem;
+    margin-top: -100%;
+    pointer-events: all;
+    border-radius: .4rem;
+    justify-content: space-between;
+    background-color: rgba(255 255 255 / .8);
+    box-shadow: .2rem .2rem .2rem rgba(0 0 0 / .6);
+    animation: show calc(var(--index) * 0.4s) .8s linear forwards;
+}
+
+section#message .messages.success {
+    color: green;
+}
+
+section#message .messages.error {
+    color: red;
+}
+
+section#message .messages.warn {
+    color: coral;
+}
+
+section#message .messages .close {
+    flex: none;
+    width: 1.5em;
+    display: flex;
+    cursor: pointer;
+    aspect-ratio: 1;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+section#message .messages .close::before,
+section#message .messages .close::after {
+    width: 80%;
+    content: '';
+    height: 0.2em;
+    position: absolute;
+    border-radius: 1rem;
+    background: crimson;
+    transform: rotate(45deg);
+}
+
+section#message .messages .close::before {
+    transform: rotate(-45deg);
+}
+
+form {
+    gap: 0.5em;
+    z-index: 1;
+    display: flex;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    flex-direction: column;
+    background: rgba(0 0 0 / .6);
+    width: clamp(22rem, 40vw, 60rem);
+}
+
+form .title {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2em;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form .title h2 {
+    color: white;
+    font-weight: 700;
+    font-family: sans-serif;
+    font-size: clamp(1.4rem, 2.4vw, 4rem);
+}
+
+form .input-groups {
+    gap: 1em;
+    flex: 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form .input-groups .group {
+    gap: 0.5em;
+    flex: 1 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form .input-groups .group label {
+    color: white;
+    font-weight: 500;
+    font-style: italic;
+    font-family: sans-serif;
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+
+form .input-groups .group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.7em 1em;
+    border-radius: .2rem;
+}
+
+form .footer {
+    gap: 0.5em;
+    width: 100%;
+    display: flex;
+    margin-top: 2em;
+    align-items: center;
+    flex-direction: column;
+}
+
+form .footer button {
+    width: 80%;
+    border: none;
+    padding: .5em;
+    outline: none;
+    display: flex;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2em;
+    align-items: center;
+    border-radius: .5em;
+    transition: 300ms ease;
+    justify-content: center;
+    text-transform: capitalize;
+    background: rgb(124, 164, 4);
+}
+
+form .footer button:hover {
+    filter: brightness(.8);
+}
+
+form .footer span {
+    color: white;
+    font-style: italic;
+}
+
+form .footer span a {
+    font-weight: 500;
+    font-style: normal;
+    color:  rgb(124, 164, 4);
+}
+
+@keyframes show {
+    0% {
+        opacity: 0; 
+        margin-top: -50%;
+    }
+
+    80% {
+        margin-top: 0;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}

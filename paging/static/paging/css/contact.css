@@ -1,0 +1,114 @@
+main {
+    padding: 2em 0;
+}
+
+footer {
+    display: none;
+}
+
+form {
+    gap: 0.5em;
+    z-index: 1;
+    display: flex;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    flex-direction: column;
+    background: rgba(0 0 0 / .6);
+    width: clamp(22rem, 40vw, 60rem);
+}
+
+form .title {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2em;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form .title h2 {
+    color: white;
+    font-weight: 700;
+    font-family: sans-serif;
+    font-size: clamp(1.4rem, 2.4vw, 4rem);
+}
+
+form .input-groups {
+    gap: 1em;
+    flex: 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form .input-groups .group {
+    gap: 0.5em;
+    flex: 1 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form .input-groups .group label {
+    color: white;
+    font-weight: 500;
+    font-style: italic;
+    font-family: sans-serif;
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+
+form .input-groups .group :is(input, textarea) {
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    padding: 0.7em 1em;
+    border-radius: .2rem;
+}
+
+form .footer {
+    gap: 0.5em;
+    width: 100%;
+    display: flex;
+    margin-top: 2em;
+    align-items: center;
+    flex-direction: column;
+}
+
+form .footer button {
+    width: 80%;
+    border: none;
+    padding: .5em;
+    outline: none;
+    display: flex;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2em;
+    align-items: center;
+    border-radius: .5em;
+    transition: 300ms ease;
+    justify-content: center;
+    text-transform: capitalize;
+    background: rgb(124, 164, 4);
+}
+
+form .footer button:hover {
+    filter: brightness(.8);
+}
+
+form .footer span {
+    color: white;
+    font-style: italic;
+}
+
+form .footer span a {
+    font-weight: 500;
+    font-style: normal;
+    color:  rgb(124, 164, 4);
+}
+form#contact-us  {
+    margin: auto;
+    width: clamp(20rem, 50vw, 60rem);
+}
+

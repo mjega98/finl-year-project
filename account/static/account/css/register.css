@@ -1,0 +1,3 @@
+form#register  {
+    width: clamp(20rem, 50vw, 60rem);
+}

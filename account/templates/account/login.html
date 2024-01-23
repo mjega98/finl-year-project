@@ -1,0 +1,31 @@
+{% extends 'account.html' %}
+{% load static %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'account/css/login.css' %}">
+{% endblock title %}
+
+{% block content %}
+<form id="login" method="post">
+    {% csrf_token %}
+    <div class="title">
+        <h2>Sign in</h2>
+    </div>
+    <div class="input-groups">
+        <div class="group">
+            <label for="username">username</label>
+            <input type="text" name="username" required />
+        </div>
+        <div class="group">
+            <label for="password">password</label>
+            <input type="password" name="password" required />
+        </div>
+    </div>
+    <div class="footer">
+        <button type="submit">login</button>
+        <div class="links">
+            <span>Not having an account? <a href="{% url 'account:register' %}">create account</a></span>
+        </div>
+    </div>
+</form>
+{% endblock content %}

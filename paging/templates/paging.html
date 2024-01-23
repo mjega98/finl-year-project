@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catering</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'paging/css/paging.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="{% static 'paging/js/paging.js' %}"></script>
+    {% block title %}{% endblock title %}
+
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'paging:index' %}">catering service</a>
+        <nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'ordering:index' %}">my orders</a>
+            {% endif %}
+            <a href="{% url 'paging:category' %}">categories</a>
+            <a href="{% url 'paging:contact' %}">contact us</a>
+        </nav>
+        <nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'account:logout' %}" class="btn">logout</a>
+            {% else %}
+            <a href="{% url 'account:login' %}">login</a>
+            <a href="{% url 'account:register' %}" class="btn">register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <form action="{% url 'account:subscribe' %}" method="post" id="subscribe">
+            {% csrf_token %}
+            <input type="email" name="email" required placeholder="Subscribe to get the latest taste" />
+            <button>subscribe</button>
+        </form>
+        <div class="bottom">
+            <span class="current-dates">© Copyright CATERING SERVICES. All Rights Reserved. {year}</span>
+        </div>
+    </footer>
+
+    {% if messages %}
+    <section id="message">
+        {% for msg in messages %}
+        <span class="messages error">
+            <p>{{msg}}</p>
+            <i class="close {{ msg.tags }}"></i>
+        </span>
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+
+</html>

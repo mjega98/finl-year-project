@@ -1,0 +1,4 @@
+.git/*
+.env/*
+.vscode/*
+project/db.sqlite3

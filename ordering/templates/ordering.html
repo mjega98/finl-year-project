@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catering</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'ordering/css/ordering.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="{% static 'ordering/js/ordering.js' %}"></script>
+    {% block title %}{% endblock title %}
+
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'ordering:index' %}">catering service</a>
+        <nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'ordering:index' %}">my orders</a>
+            {% endif %}
+            <a href="{% url 'ordering:category' %}">categories</a>
+            <a href="{% url 'paging:contact' %}">contact us</a>
+        </nav>
+        <nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'account:logout' %}" class="btn">logout</a>
+            {% else %}
+            <a href="{% url 'account:login' %}">login</a>
+            <a href="{% url 'account:register' %}" class="btn">register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer></footer>
+
+    {% if messages %}
+    <section id="message">
+        {% for msg in messages %}
+        <span class="messages error">
+            <p>{{msg}}</p>
+            <i class="close {{ msg.tags }}"></i>
+        </span>
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+
+</html>
