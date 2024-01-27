@@ -5,5 +5,6 @@ app_name = 'paging'
 urlpatterns = [
     path('', views.index_view, name='index'),
     path('contact-us', views.contact_view, name='contact'),
-    path('category/', views.category_index_view, name='category'),
+    path('category/', views.category_view, name='category'),
+    path('category/<name>/', views.category_view, name='category-filter'),
 ]

@@ -2,12 +2,52 @@
 {% load static %}
 
 {% block title %}
-<link rel="stylesheet" href="{% static 'paging/css/category.css' %}">
-{% endblock title %}
-
+  <link rel="stylesheet" href="{% static 'paging/css/category.css' %}" />
+{% endblock %}
 
 {% block content %}
-<section id="banner">
+  <section id="banner">
     <h1>categories</h1>
-</section>
-{% endblock content %}
+  </section>
+
+  <section class="w-full flex flex-col gap-20">
+    <div class="w-full flex items-center justify-center gap-4">
+      <a href="{% url 'paging:category' %}" style="font-variant: small-caps;" class="text-white lowercase">all</a>
+      <a href="{% url 'paging:category-filter' 'breakfast' %}" style="font-variant: small-caps;" class="text-white lowercase">breakfast</a>
+      <a href="{% url 'paging:category-filter' 'launch' %}" style="font-variant: small-caps;" class="text-white lowercase">launch</a>
+      <a href="{% url 'paging:category-filter' 'dinner' %}" style="font-variant: small-caps;" class="text-white lowercase">dinner</a>
+    </div>
+    <div class="px-[10%] w-full grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+        <a href="#" class="h-40 bg-white overflow-hidden group relative">
+            <div class="p-4 top-0 scale-y-105 text-white flex flex-col items-start gap-2 justify-end absolute w-full h-full bg-black opacity-0 transition group-hover:opacity-80 group-hover:scale-y-100">
+                <h2 class="text-lg font-semibold capitalize">product name</h2>
+            </div>
+        </a>
+    </div>
+  </section>
+{% endblock %}
