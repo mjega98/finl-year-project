@@ -9,7 +9,7 @@
 <form id="login" method="post">
     {% csrf_token %}
     <div class="title">
-        <h2>Sign in</h2>
+        <a href="{% url 'paging:index' %}" class="text-4xl text-white font-black">Sign in</a>
     </div>
     <div class="input-groups">
         <div class="group">

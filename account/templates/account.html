@@ -1,32 +1,32 @@
-{% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    {% tailwind_css %}
+    <meta charset="UTF-8" />
     <title>Authentiation</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="{% static 'account/css/account.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="{% static 'account/css/account.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="{% static 'account/js/account.js' %}"></script>
-    {% block title %}{% endblock title %}
+    {% block title %}
+    {% endblock %}
+  </head>
 
-</head>
-
-<body>
+  <body>
     {% block content %}
-    {% endblock content %}
+
+    {% endblock %}
 
     {% if messages %}
-    <section id="message">
+      <section id="message">
         {% for msg in messages %}
-        <span class="messages error">
-            <p>{{msg}}</p>
+          <span class="messages error">
+            <p>{{ msg }}</p>
             <i class="close {{ msg.tags }}"></i>
-        </span>
+          </span>
         {% endfor %}
-    </section>
+      </section>
     {% endif %}
-</body>
-
+  </body>
 </html>

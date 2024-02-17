@@ -2,46 +2,46 @@
 {% load static %}
 
 {% block title %}
-<link rel="stylesheet" href="{% static 'account/css/register.css' %}">
-{% endblock title %}
+  <link rel="stylesheet" href="{% static 'account/css/register.css' %}" />
+{% endblock %}
 
 {% block content %}
-<form id="register" method="post">
+  <form id="register" method="post">
     {% csrf_token %}
     <div class="title">
-        <h2>Sign up</h2>
+      <a href="{% url 'paging:index' %}" class="text-4xl text-white font-black">Sign up</a>
     </div>
     <div class="input-groups">
-        <div class="group">
-            <label for="first_name">first name</label>
-            <input type="text" name="first_name" required />
-        </div>
-        <div class="group">
-            <label for="last_name">last name</label>
-            <input type="text" name="last_name" required />
-        </div>
-        <div class="group">
-            <label for="email">email</label>
-            <input type="email" name="email" required />
-        </div>
-        <div class="group">
-            <label for="username">username</label>
-            <input type="text" name="username" required />
-        </div>
-        <div class="group">
-            <label for="password1">password</label>
-            <input type="password" name="password1" required />
-        </div>
-        <div class="group">
-            <label for="password2">confirm password</label>
-            <input type="password" name="password2" required />
-        </div>
+      <div class="group">
+        <label for="first_name">first name</label>
+        <input type="text" name="first_name" required />
+      </div>
+      <div class="group">
+        <label for="last_name">last name</label>
+        <input type="text" name="last_name" required />
+      </div>
+      <div class="group">
+        <label for="email">email</label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="group">
+        <label for="username">username</label>
+        <input type="text" name="username" required />
+      </div>
+      <div class="group">
+        <label for="password1">password</label>
+        <input type="password" name="password1" required />
+      </div>
+      <div class="group">
+        <label for="password2">confirm password</label>
+        <input type="password" name="password2" required />
+      </div>
     </div>
     <div class="footer">
-        <button type="submit">register</button>
-        <div class="links">
-            <span>having an account? <a href="{% url 'account:login' %}">get in</a></span>
-        </div>
+      <button type="submit">register</button>
+      <div class="links">
+        <span>having an account? <a href="{% url 'account:login' %}">get in</a></span>
+      </div>
     </div>
-</form>
-{% endblock content %}
+  </form>
+{% endblock %}
