@@ -1,0 +1,21 @@
+{% extends 'paging.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="w-full bg-white flex flex-col gap-10 py-10 px-[8%] min-h-screen">
+    <div class="w-full grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] gap-6">
+      <div class="h-96 relative">
+        <img src="" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="h-96 flex flex-col items-start gap-3 p-4">
+        <a href="{% url 'paging:category-filter' 'all' %}" class="hover:text-green-600 text-sm" style="font-variant: small-caps;">category</a>
+        <h2 class="text-3xl w-5/6 leading-5">Nice, fresh and yummy ice-cream</h2>
+
+        <form method="post" class="mt-auto w-full flex items-center justify-start gap-6 text-xs">
+          <button class="px-8 py-2 text-center font-semibold text-white bg-green-600 flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out uppercase">add to cart</button>
+          <input type="number" name="amount" class="w-16 text-center" value="1" required min="1" max="100" />
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -13,5 +13,5 @@ def category_view(request, name='all'):
     return render(request, "paging/category/index.html")
 
 
-# def detail_view(request, category="all"):
-#     return render(request, "paging/category/detail.html")
+def detail_view(request, id):
+    return render(request, "paging/product.html")
