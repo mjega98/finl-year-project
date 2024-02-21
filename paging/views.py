@@ -1,8 +1,10 @@
+from . import models
 from django.shortcuts import render
 
 
 def index_view(request):
-    return render(request, "paging/index.html")
+    meals = models.Product.objects.all()[:3]
+    return render(request, "paging/index.html", { "meals": meals })
 
 
 def contact_view(request):
@@ -10,8 +12,14 @@ def contact_view(request):
 
 
 def category_view(request, name='all'):
-    return render(request, "paging/category/index.html")
+    products = models.Product.objects.all()
+    categories = models.Category.objects.all()
+
+    if name != 'all':
+        products = products.filter(category__name=name)
+    return render(request, "category/index.html", {"categories": categories, "products": products})
 
 
 def detail_view(request, id):
-    return render(request, "paging/product.html")
+    meal = models.Product.objects.get(id=id)
+    return render(request, "paging/product.html", { "meal": meal })

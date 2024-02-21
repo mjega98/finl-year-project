@@ -5,17 +5,63 @@
   <section class="w-full bg-white flex flex-col gap-10 py-10 px-[8%] min-h-screen">
     <div class="w-full grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] gap-6">
       <div class="h-96 relative">
-        <img src="" alt="" class="w-full h-full object-cover" />
+        <img src="{{ meal.image.url }}" alt="" class="w-full h-full object-cover" />
       </div>
       <div class="h-96 flex flex-col items-start gap-3 p-4">
-        <a href="{% url 'paging:category-filter' 'all' %}" class="hover:text-green-600 text-sm" style="font-variant: small-caps;">category</a>
-        <h2 class="text-3xl w-5/6 leading-5">Nice, fresh and yummy ice-cream</h2>
+        <a href="{% url 'paging:category-filter' 'all' %}" class="hover:text-green-600 text-sm" style="font-variant: small-caps;">{{ meal.category.name }}</a>
+        <h2 class="text-3xl w-5/6 leading-5">{{ meal.name }}</h2>
+        <p class="mt-4 text-sm">{{ meal.summary }}</p>
 
         <form method="post" class="mt-auto w-full flex items-center justify-start gap-6 text-xs">
           <button class="px-8 py-2 text-center font-semibold text-white bg-green-600 flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out uppercase">add to cart</button>
-          <input type="number" name="amount" class="w-16 text-center" value="1" required min="1" max="100" />
+          <input type="number" name="amount" class="w-16 text-center" value="1" required min="1" max="{{ meal.description }}" />
         </form>
       </div>
     </div>
-  </section>
+
+    <div class="w-full flex flex-wrap items-center justify-center gap-6">
+      <div class="w-full flex-none flex items-center justify-center mb-5">
+        <h2 class="text-3xl text-center font-semibold">Similar products</h2>
+      </div>
+      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
+          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
+          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+        </div>
+      </div>
+      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
+          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
+          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+        </div>
+      </div>
+      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
+          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
+          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+        </div>
+      </div>
+      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
+          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
+          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+        </div>
+      </div>
+      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
+          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
+          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+        </div>
+      </div>
+    </div>
 {% endblock %}

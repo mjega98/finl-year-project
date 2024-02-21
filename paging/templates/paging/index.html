@@ -15,28 +15,17 @@
     <div class="title">
       <h3>meals of the day</h3>
     </div>
+
     <div class="content">
-      <a href="#" class="box">
-        <img src="{% static 'paging/img/banner.jpg' %}" alt="" />
+      {% for meal in meals %}
+      <a href="{% url 'paging:detail' meal.id %}" class="box">
+        <img src="{{ meal.image.url }}" alt="" />
         <div class="detail">
-          <h4>breakfast</h4>
-          <p>morining food from 8:00am - 12:00pm</p>
+          <h4>{{ meal.name }}</h4>
+          <p>{{ meal.summary }}</p>
         </div>
       </a>
-      <a href="#" class="box">
-        <img src="{% static 'paging/img/banner.jpg' %}" alt="" />
-        <div class="detail">
-          <h4>breakfast</h4>
-          <p>morining food from 8:00am - 12:00pm</p>
-        </div>
-      </a>
-      <a href="#" class="box">
-        <img src="{% static 'paging/img/banner.jpg' %}" alt="" />
-        <div class="detail">
-          <h4>breakfast</h4>
-          <p>morining food from 8:00am - 12:00pm</p>
-        </div>
-      </a>
+      {% endfor %}
     </div>
   </section>
 
