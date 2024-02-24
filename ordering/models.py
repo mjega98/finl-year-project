@@ -13,7 +13,7 @@ class Order(models.Model):
     def __str__(self) -> str:
         return f"{self.user.username}'s cart"
 
-class CartItem(models.Model):
+class OrderItem(models.Model):
     amount = models.PositiveIntegerField(default=1)
     order = models.ForeignKey(Order, models.CASCADE)
     product = models.ManyToManyField(Product, blank=True)

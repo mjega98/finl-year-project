@@ -15,7 +15,7 @@ def login_view(request):
             return redirect("paging:index")
 
         messages.error(request, "Invalid credentials")
-        return redirect("account:login")
+        return redirect(request.GET.get("next", "account:login"))
     return render(request, "account/login.html")
 
 

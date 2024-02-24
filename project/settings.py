@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     # my apps
     "paging.apps.PagingConfig",
     "account.apps.AccountConfig",
+    "cartfav.apps.CartfavConfig",
     "ordering.apps.OrderingConfig",
 ]
 

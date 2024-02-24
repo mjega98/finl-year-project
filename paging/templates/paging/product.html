@@ -10,12 +10,16 @@
       <div class="h-96 flex flex-col items-start gap-3 p-4">
         <a href="{% url 'paging:category-filter' 'all' %}" class="hover:text-green-600 text-sm" style="font-variant: small-caps;">{{ meal.category.name }}</a>
         <h2 class="text-3xl w-5/6 leading-5">{{ meal.name }}</h2>
-        <p class="mt-4 text-sm">{{ meal.summary }}</p>
-
-        <form method="post" class="mt-auto w-full flex items-center justify-start gap-6 text-xs">
-          <button class="px-8 py-2 text-center font-semibold text-white bg-green-600 flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out uppercase">add to cart</button>
-          <input type="number" name="amount" class="w-16 text-center" value="1" required min="1" max="{{ meal.description }}" />
-        </form>
+        <p class="mt-4 text-sm">{{ meal.description }}</p>
+        {% if meal.quantity > 0 %}
+          <form method="post" action="{% url 'cartfav:add-to-cart' meal.id %}" class="mt-auto w-full flex items-center justify-start gap-6 text-xs">
+            {% csrf_token %}
+            <button class="px-8 py-2 text-center font-semibold text-white bg-green-600 flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out uppercase">add to cart</button>
+            <input type="number" name="amount" class="w-16 text-center" value="1" required min="1" max="{{ meal.quantity }}" />
+          </form>
+          {% else %}
+          <span class="">product has finished</span>
+        {% endif %}
       </div>
     </div>
 
@@ -23,45 +27,21 @@
       <div class="w-full flex-none flex items-center justify-center mb-5">
         <h2 class="text-3xl text-center font-semibold">Similar products</h2>
       </div>
-      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
-        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
-          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
-          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
-          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
+      {% for product in similar %}
+        <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
+          <img src="{{ product.image.url }}" alt="" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
+            <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">{{ product.category.name }}</a>
+            <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">{{ product.name }}</a>
+            {% if product.quantity > 0 %}
+              <form action="{% url 'cartfav:add-to-cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">add to cart</button>
+              </form>
+            {% endif %}
+          </div>
         </div>
-      </div>
-      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
-        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
-          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
-          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
-          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
-        </div>
-      </div>
-      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
-        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
-          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
-          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
-          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
-        </div>
-      </div>
-      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
-        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
-          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
-          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
-          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
-        </div>
-      </div>
-      <div class="basis-56 h-80 bg-slate-100 relative group overflow-hidden rounded">
-        <img src="{% static 'images/product-banner.jpg' %}" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all text-white p-4">
-          <a href="#" class="capitalize text-sm hover:text-blue-700 transition-all">accessories</a>
-          <a href="#" class="capitalize text-xl font-black hover:text-blue-400 transition-all">jercey stylish</a>
-          <button class="mt-2 p-2 px-6 text-xs text-white font-semibold text-center uppercase bg-blue-500 hover:bg-blue-800 transition-all">overview</button>
-        </div>
-      </div>
+      {% endfor %}
     </div>
+  </section>
 {% endblock %}
