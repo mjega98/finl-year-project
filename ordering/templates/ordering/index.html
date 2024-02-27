@@ -1,6 +1,40 @@
-{% extends 'paging.html' %}
-{% load static %}
+{% extends 'cartfav.html' %}
 
+{% block heading %}
+  my orders
+{% endblock %}
 
 {% block content %}
-{% endblock content %}
+  {% if orders.count %}
+    <section class="w-full flex flex-wrap flex-row justify-start gap-2">
+      <div class="basis-96 grow-[3] p-4 flex items-start bg-white rounded-md mb-auto">
+        <table class="w-full">
+          <thead class="">
+            <tr class="border-b text-left text-slate-700 capitalize font-thin">
+              <th class="p-4">ID</th>
+              <th class="p-4">Shipping price</th>
+              <th class="p-4">Subtotal</th>
+              <th class="p-4">Total</th>
+              <th class="p-4">Products count</th>
+              <th class="p-4">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+              <tr class="border-b border-b-slate-400 text-left text-slate-700 capitalize font-thin">
+                <td class="p-4 font-bold">{{ order.id }}</td>
+                <td class="p-4 font-bold">{{ order.shipping_price }}</td>
+                <td class="p-4 font-bold">{{ order.sub_total }}</td>
+                <td class="p-4 font-bold">{{ order.total }}</td>
+                <td class="p-4 font-bold">{{ order.orderitem_set.count }}</td>
+                <td class="p-4 font-bold">{{ order.created_at }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% else %}
+    <h2 class="text-center text-white drop-shadow-md text-6xl capitalize mt-10">you have not placed an order</h2>
+  {% endif %}
+{% endblock %}

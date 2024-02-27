@@ -1,0 +1,29 @@
+{% extends 'paging.html' %}
+{% load static %}
+
+{% block title %}
+  <link rel="stylesheet" href="{% static 'paging/css/contact.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <form id="contact-us" method="post" action="{% url 'ordering:booking' %}">
+    {% csrf_token %}
+    <div class="title">
+      <h2>Make a reservation</h2>
+    </div>
+    <div class="input-groups">
+      <input type="hidden" name="user" value="{{ user.id }}" />
+      <div class="group">
+        <label for="first_name">start time</label>
+        <input type="datetime-local" name="started_at" required />
+      </div>
+      <div class="group">
+        <label for="first_name">end time</label>
+        <input type="datetime-local" name="ended_at" required />
+      </div>
+    </div>
+    <div class="footer">
+      <button type="submit">submit</button>
+    </div>
+  </form>
+{% endblock %}

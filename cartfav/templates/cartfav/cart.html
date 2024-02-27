@@ -1,5 +1,73 @@
 {% extends 'cartfav.html' %}
 
-{% block body %}
+{% block heading %}
+  my cart
+{% endblock %}
 
+{% block content %}
+  {% if cart.cartitem_set.count %}
+    <section class="w-full flex flex-wrap flex-row justify-start gap-2">
+      <div class="basis-96 grow-[3] p-4 flex items-start bg-white rounded-md mb-auto">
+        <table class="w-full">
+          <thead class="">
+            <tr class="border-b text-left text-slate-700 capitalize font-thin">
+              <th class="p-4">product</th>
+              <th class="p-4">price</th>
+              <th class="p-4">quantity</th>
+              <th class="p-4">total</th>
+              <th class="p-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+              <tr class="border-b border-b-slate-400 text-left text-slate-700 capitalize font-thin">
+                <td class="p-4 flex gap-1">
+                  <img src="{{ item.product.image.url }}" alt="" class="h-12 w-12 bg-black object-contain" />
+                  <div class="flex flex-col justify-center leading-3">
+                    <a href="{% url 'paging:detail' item.product.id %}" class="font-semibold text-md">{{ item.product.name }}</a>
+                    <span class="text-xs lowercase font-semibold text-slate-400" style="font-variant: small-caps;">{{ item.product.category.name }}</span>
+                  </div>
+                </td>
+                <td class="p-4 font-bold">N{{ item.product.price }}</td>
+                <td class="p-4 font-bold">{{ item.amount }}</td>
+                <td class="p-4 font-bold">N{{ item.total_price }}</td>
+                <td class="p-4 font-bold">
+                  <form action="{% url 'cartfav:remove-from-cart' item.product.id %}" method="post" class="flex items-center justify-center">
+                    {% csrf_token %}
+                    <button class="w-5 h-5 flex items-center justify-center text-white bg-gray-600 font-bold rotate-45 rounded-full">+</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <form method="post" action="{% url 'ordering:place-order' %}" class="basis-52 grow p-4 bg-white gap-2 flex-col rounded-md">
+        {% csrf_token %}
+        <div class="w-full flex flex-col items-start gap-1 leading-3 text-slate-700">
+          <div class="w-full border-b p-3 font-bold text-lg capitalize">order summary</div>
+
+          <div class="w-full flex flex-col text-sm capitalize px-4 py-5">
+            <div class="w-full flex items-center justify-between">
+              <span>subtotal</span>
+              <span>N{{ cart.sub_total }}</span>
+            </div>
+            <div class="w-full flex items-center justify-between">
+              <span>shipping</span>
+              <span>{{ cart.shipping_price|default:'free' }}</span>
+            </div>
+          </div>
+
+          <div class="w-full border-b p-3 font-bold text-md capitalize flex items-center justify-between">
+            <h3>total</h3>
+            <span>N{{ cart.total }}</span>
+          </div>
+        </div>
+        <button class="w-full text-white uppercase bg-green-600 text-sm py-2.5">checkout</button>
+      </form>
+    </section>
+  {% else %}
+    <h2 class="text-center text-white drop-shadow-md text-6xl capitalize mt-10">cart is empty</h2>
+  {% endif %}
 {% endblock %}

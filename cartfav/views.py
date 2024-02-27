@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 def list_cart_view(request):
     cart, _ = models.Cart.objects.get_or_create(user=request.user)
     items = cart.cartitem_set.all()
-    return render(request, "cartfav/cart.html", {"items": items})
+    return render(request, "cartfav/cart.html", {"items": items, "cart": cart})
 
 
 @login_required
@@ -52,17 +52,17 @@ def list_favorite_view(request):
 def add_to_favorite_view(request, id):
     if request.method == "POST":
         product = Product.objects.get(id=id)
-        fav, _ = models.Favorite.objects.get_or_create(
+        models.Favorite.objects.get_or_create(
             product__id=id,
             user=request.user,
             defaults={"user": request.user, "product": product},
         )
-        print(fav, _)
     return redirect(request.META.get("HTTP_REFERER", "paging:index"))
 
 
 @login_required
 def remove_from_favorite_view(request, id):
     if request.method == "POST":
-        ...
+        fav = models.Favorite.objects.filter(user=request.user, product__id=id)
+        fav.delete()
     return redirect(request.META.get("HTTP_REFERER", "paging:index"))

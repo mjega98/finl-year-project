@@ -1,6 +1,6 @@
 from . import models
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 
 def index_view(request):
     meals = models.Product.objects.all()[:3]
@@ -31,3 +31,7 @@ def detail_view(request, id):
         .order_by("?")[:8]
     )
     return render(request, "paging/product.html", {"meal": meal, "similar": similar})
+
+@login_required
+def booking_view(request):
+    return render(request, "paging/booking.html")
